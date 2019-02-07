@@ -4,6 +4,13 @@ Created Dec 21 2018
 
 Last Updated Feb 07 2019
 
-Branches:
-Master - 
-InitialModel - Code implementing simulation and phase portraits for Valve Closing Model (no wave effects)
+Branches - InitialModel
+Code implementing simulation and phase portraits for Valve Closing Model. No wave effects are included.
+
+Files:
+Derivative          - Simple function describing differential equation, suitable for use with ode45
+InitialModel        - 
+InterestingCrossing - 
+PhasePotrait        - 
+TrajectoryPlotter   - 
+VectorPhasePortrait - 
