@@ -7,3 +7,5 @@ Last Updated Feb 07 2019
 Branches:
 Master - 
 InitialModel - Code implementing simulation and phase portraits for Valve Closing Model (no wave effects)
+ValveClosingPDE - Code for the Valve Closing model with a 1D CFD simulation of fluid within inlet pipe
+QuarterWaveModel - Code for the Quarter Wave model, considering just the quarter wave fluid effects
