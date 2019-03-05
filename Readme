@@ -2,9 +2,10 @@ Code prepared in support of MEng Technical Project in "Chatter Instabilities in 
 Created by James Roff
 Created Feb 23 2018
 
-Last Updated Feb 23 2019
+Last Updated Feb 27 2019
 
 Branches - QuarterWaveModel
 Code implementing simulation and phase portraits for Quarter Wave model.
 
 Files:
+CubicFactorisation.m - simple code to symbolically solve algebraic inequality
