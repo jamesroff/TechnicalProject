@@ -9,3 +9,5 @@ Code implementing simulation and phase portraits for Quarter Wave model.
 
 Files:
 CubicFactorisation.m - simple code to symbolically solve algebraic inequality
+Derivative.m - Simple function modelling the set of ODEs for use in ode45
+QuarterWaveSimulation.m - Function which completes a simulation of the QWM using the parameters inputted
