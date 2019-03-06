@@ -1,4 +1,4 @@
-function [t,y] = QuarterWaveSimulation(p,init,x_range,t_range)
+function [t,y] = QuarterWaveSimulation(p,init,x_range,t_range,model)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -22,7 +22,12 @@ while t(end) ~= t_range(2)
 %         break
 %     end
     
-    [t1,y1] = ode45(@(t,y) Derivative(t,y,p(1:end-1)), [t(end),t_range(2)], init, opts);
+    switch model
+        case 'Initial'
+            [t1,y1] = ode45(@(t,y) Derivative(t,y,p(1:end-1)), [t(end),t_range(2)], init, opts);
+        case 'QWM'
+            [t1,y1] = ode45(@(t,y) FullDerivative(t,y,p(1:end-1)), [t(end),t_range(2)], init, opts);
+    end
     
     %fprintf('Restarting\n')
     
@@ -57,8 +62,8 @@ end
 % end
 
 function [v,t,d] = Collision(~,y,x_range)
-    v = [y(1) - x_range(1),...
-         y(1) - x_range(2)];
+    v = [real( y(1) ) - x_range(1),...
+         real( y(1) ) - x_range(2)];
     t = [1,1];
     d = [-1,+1];
 end
