@@ -4,14 +4,14 @@ function [dydt] = FullDerivative(~,y,p)
     %[gamma, q, Lambda, alpha, delta, kappa, beta, mu, sigma, phi] = p;
     gamma = p(1);
     q = p(2);
-    Lambda = p(3);
+    Lambda = p(3); % 0;
     alpha = p(4);
     delta = p(5);
     kappa = p(6);
     beta = p(7);
     mu = p(8);
-    sigma = p(9);
-    phi = p(10);
+    sigma = p(9); 
+    phi = p(10); % 0; 
     
     %pres = ((p(2))/(p(8)*p(9)))^2
     %y(3) = ((q)/(mu*sigma))^2;
@@ -50,7 +50,7 @@ function [dydt] = FullDerivative(~,y,p)
 %                     + ((2 - sqrt(2))/(2))*sigma * ((y(1,:).*dydt(3,:))./(root))                 ) ... % NEW TERM
 %                 + (sqrt(2)/2)*phi* (sqrt(2)*sigma*y(1,:).*root + y(5,:)) .* abs((sqrt(2)*sigma*y(1,:).*root + y(5,:))) ; %UNCHANGED
     dydt(5,:) = - (pi/2)*(1/(alpha*gamma))*y(4,:)...
-                ... - ((pi*sqrt(2))/(4)) * ((alpha*sigma)/(gamma)) * ((y(1,:).*y(5,:))./root) ; ... THIS TERM IS THE PROBLEM!!!!!
+                - ((pi*sqrt(2))/(4)) * ((alpha*sigma)/(gamma)) * ((y(1,:).*y(5,:))./root) ... THIS TERM IS THE PROBLEM!!!!!
                 - sqrt(2)*sigma * y(2,:).*root ...
                 + ((2 - sqrt(2))/2)*sigma*((y(1,:).*dydt(3,:))./root) ...
                 - sigma*(delta^2) * (( (y(1,:).^2).*y(2,:).*y(3,:) )./root) ... % end of first line of eqn. 17
@@ -59,6 +59,6 @@ function [dydt] = FullDerivative(~,y,p)
                 + ((pi*sqrt(2))/(4))*Lambda* (y(5,:).^2) ...
                 + (pi/4)*Lambda*sigma * (( y(1,:).*y(4,:).*y(5,:) )./root) ...
                 + ((pi*sqrt(2))/(4))*Lambda*(sigma^2) * (y(1,:).^2).*y(4,:) ... % end of second line of eqn. 17
-                + (sqrt(2)/2)*phi* (sqrt(2)*sigma*y(1,:).*root + y(5,:)) .* abs((sqrt(2)*sigma*y(1,:).*root + y(5,:))) ... ; %THIS IS NON-ZERO
+                - (sqrt(2)/2)*phi* (sqrt(2)*sigma*y(1,:).*root + y(5,:)) .* abs((sqrt(2)*sigma*y(1,:).*root + y(5,:))) ... ; %THIS IS NON-ZERO
                 ;
 end

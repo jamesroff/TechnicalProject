@@ -11,7 +11,7 @@ opts = odeset('Events',@(t,y) Collision(t,y,x_range) );
 
 t_col = [];
 
-while ( t(end) ~= t_range(2) ) && 
+while t(end) ~= t_range(2)
     
     init = y(end,:);
     init(2) = - r * init(2);
@@ -36,6 +36,10 @@ while ( t(end) ~= t_range(2) ) &&
     %fprintf('Restarting\n')
     
     t = [t; NaN; t1]; y = [y; NaN([1,size(y,2)]); y1];
+    
+    if cont == false
+        break
+    end
 end
 
 if t_col(end) == t_range(2)
