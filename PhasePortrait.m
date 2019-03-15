@@ -20,7 +20,7 @@ x_range = [0,x_max];
 p_range = [0,10];
 v_range = [-0.3,0.3];
 
-n = 11;
+n = 5;
 
 init = [linspace(x_range(1),x_range(2),n)', zeros(n,1), ones(n,1)*p_range(1);...
         ones(n,1)*x_range(2), zeros(n,1), linspace(p_range(1),p_range(2),n)';...
@@ -42,7 +42,7 @@ xlabel('Position'); ylabel('Pressure')
 ylim(p_range); xlim(x_range)
 
 %% 3D Init
-x_values = linspace(x_range(1),x_range(2),16);
+x_values = linspace(x_range(1),x_range(2),2*n+1);
 v_values = linspace(v_range(1),v_range(2),n);
 p_values = linspace(p_range(1),p_range(2),n);
 
@@ -57,6 +57,7 @@ plot3(x,zeros(size(x)),(1./(x.^2)),'r--')
 hold on
 for i = 1:size(init,1)
     [t,y] = InitialModel(a,b,r,init(i,:),[x_min,x_max],t_range);
+    plot3(y(1,1),y(2,1),y(3,1),'go')
     plot3(y(1,:),y(2,:),y(3,:),'g-')
 end
 xlabel('Position'); ylabel('Velocity'); zlabel('Pressure')
