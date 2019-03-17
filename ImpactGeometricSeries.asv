@@ -28,9 +28,6 @@ y_lim = ylim;
 plot([1,1]*t_end1,y_lim,'r--')
 plot([1,1]*t_end2,y_lim,'b--')
 plot([1,1]*t_end3,y_lim,'g--')
-% x_lim = xlim;
-% plot(x_lim,[1,1]*1.5,'k-.')
-% xlim(x_lim);
 ylim(y_lim);
 legend('Simulation Results','Initial Ratio Prediction','Mean Ratio Predicition','Final Ratio Prediction','location','southeast')
 xlabel('Time'); ylabel('Valve position');
@@ -43,6 +40,7 @@ x_lim = xlim;
 plot(xlim,[1,1]*ratio(1),'r--')
 plot(xlim,[1,1]*mean(ratio),'b--')
 plot(xlim,[1,1]*ratio(end),'g--')
+
 xlabel('Index of impact'); ylabel('Common ratio')
 legend('Simulation Results','Initial Ratio Prediction','Mean Ratio Predicition','Final Ratio Prediction','location','southeast')
 
