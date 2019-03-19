@@ -13,5 +13,3 @@ CubicFactorisation.m - simple code to symbolically solve algebraic inequality
 Derivative.m - Simple function modelling the set of ODEs (no QWM) for use in ode45
 FullDerivative.m - Simple function modelling the set of ODEs for the QWM, suitable for use in ode45
 QuarterWaveSimulation.m - Function which completes a simulation of the QWM using the parameters inputted
-
-ImpactGeometricSeries.m - Script to calculate and plot different implementations of treating impact times as a geometric series
