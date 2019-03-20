@@ -29,6 +29,9 @@ while t(end) ~= t_range(2)
             [t1,y1] = ode45(@(t,y) FullDerivative(t,y,p(1:end-1)), [t(end),t_range(2)], init, opts);
         case 'FullQWM'
             [t1,y1] = ode45(@(t,y) ComplexDerivative(t,y,p(1:end-1)), [t(end),t_range(2)], init, opts);
+        otherwise
+            t = []; y = [];
+            return
     end
     
     t_col = [t_col, t1(end)];
