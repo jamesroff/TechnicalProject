@@ -33,8 +33,8 @@ p(1) = (pi/2)*p(4) / a;
 CalculateFrequency(p(1));
 
 %pres = ((p(2))/(p(8)*p(9)))^2;
-%pres = ((sqrt(2)*pi/4)*(p(4)/p(1))*(pi/(2*p(1)))^2)/(p(5)^2 * 2 * (1-a)); %+ 0.07;
-pres = 1;
+pres = ((sqrt(2)*pi/4)*(p(4)/p(1))*(pi/(2*p(1)))^2)/(p(5)^2 * 2 * (1-a)); %+ 0.07;
+%pres = 1;
 %pres = 10 * pres;
 %pres = pres / 10;
 init = [1,0,pres,-0.001,0]; % need 10000 to see some oscillations
