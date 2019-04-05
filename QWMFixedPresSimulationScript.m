@@ -14,7 +14,7 @@ q = 0.6;
 %%% Very weird behaviour with L = 9 - L = 10 - L = 11 for 'spring'
 L = 20; % 0.3, 0.35, 0.5
 x_range = [0,1.1];
-t_range = [0,1300]; % 14.1
+t_range = [0,300]; % 14.1
 %t_range = t_range(1):(5e-3):t_range(2);
 %t_range = linspace(t_range(1),t_range(2),4000);
 
@@ -31,15 +31,13 @@ p(3) = 0; p(10) = 0; % Lambda = 0; phi = 0;
 %a = 0.9;
 %p(1) = (pi/2)*p(4) / a;
 
-p(1) = 4;
+%p(1) = 4; % 2 and 4
 
 CalculateFrequency(p(1));
 
-
-
-%pres = ((p(2))/(p(8)*p(9)))^2;
+pres = ((p(2))/(p(8)*p(9)))^2;
 %pres = ((sqrt(2)*pi/4)*(p(4)/p(1))*(pi/(2*p(1)))^2)/(p(5)^2 * 2 * (1-a)); %+ 0.07;
-pres = 0.1;
+%pres = 0.1;
 %pres = 1;
 init = [1,0,pres,-0.001,0]; % need 10000 to see some oscillations
 %init = [0.99,0,pres,0,0];
@@ -73,14 +71,6 @@ switch graph
         plot(t,y(2,:),'b-')
         %plot(t2,y2(2,:))
         xlabel('Time'); ylabel('Valve velocity')
-        legend('Initial','Quarter Wave Model','location','northeast')
-
-        figure;
-        plot(t_control,y_control(3,:),'r--')
-        hold on
-        plot(t,y(3,:),'b-')
-        %plot(t2,y2(3,:))
-        xlabel('Time'); ylabel('Tank pressure')
         legend('Initial','Quarter Wave Model','location','northeast')
 
         figure;
