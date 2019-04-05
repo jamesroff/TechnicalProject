@@ -59,8 +59,7 @@ phi = lambda*((x_ref)/(2*D));
 
 p = [gamma, q, Lambda, alpha, delta, kappa, beta, mu, sigma, phi, r];
 
-w = (pi)/(2*gamma);
-fprintf('The quarter-wave frequency is f = %d\n',(2*pi)/w)
+CalculateFrequency(gamma);
 
 
 end
