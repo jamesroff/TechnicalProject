@@ -23,7 +23,7 @@ kappa = 0; alpha = 8.5658; delta = 1; sigma = 10.3808;
 
 gamma = linspace(0,20,2001); gamma(1) = [];
 
-pres = ((sqrt(2)/2)*alpha*(pi./(2*gamma)).^3)./(delta^2 - alpha*(delta^2)*(pi./(2*gamma)));
+pres = ((sqrt(2)/2)*alpha*(pi./(2*gamma)).^3)./(2*delta^2 - 2*alpha*(delta^2)*(pi./(2*gamma)));
 gamma = gamma(pres>0); pres = pres(pres>0);
 
 %% Plot two dimensional bifurcation diagram
@@ -31,7 +31,7 @@ figure;
 plot(p_cont,gamma_cont)
 hold on
 plot(pres,gamma,'r--')
-plot(0.0703,14.9501,'rx')
+plot(0.0351,14.9501,'rx')
 plot(0.1686,1.4745,'b*')
 ylabel('\gamma'); xlabel('p_0')
 xlim([0,1]); ylim([0,20])
