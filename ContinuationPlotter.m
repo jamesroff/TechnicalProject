@@ -28,11 +28,14 @@ gamma = gamma(pres>0); pres = pres(pres>0);
 
 %% Plot two dimensional bifurcation diagram
 figure;
-plot(p_cont,gamma_cont)
+plot(p_cont,gamma_cont,'k-')
 hold on
-plot(pres,gamma,'r--')
-plot(0.0351,14.9501,'rx')
-plot(0.1686,1.4745,'b*')
-ylabel('\gamma'); xlabel('p_0')
-xlim([0,1]); ylim([0,20])
+plot(pres,gamma,'k-')
+plot(0.0351,14.9501,'ro')
+plot(0.1,4,'rd')
+plot(0.1,2,'bx')
+plot(0.1686,1.4745,'b+')
+ylabel('Pipe length - \gamma'); xlabel('Tank pressure - p_0')
+%xlim([0,1]); ylim([0,20])
+xlim([0,0.2]); ylim([0,20])
 grid on
