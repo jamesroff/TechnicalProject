@@ -4,7 +4,7 @@
 %clc;
 
 %% Initialise variables
-a = 0.01;
+a = 0.1;
 b = 1;
 r0 = [1,0,1];
 init = r0 - [0.01,0,0];
@@ -13,7 +13,7 @@ init(3) = ( 1/(init(1)^2) );
 
 r = 0.9;
 
-t_range = [0,180];
+t_range = [0,30];
 
 x_max = 1.5; %x_max = 1000;
 x_min = 0;
@@ -31,15 +31,18 @@ v1 = [0;0;1]; v2 = [(2-b)/(2*b);(b-2)/(2*b);1];
 %% Plot graphs
 figure;
 plot(t,y(1,:))
-xlabel('Time'); ylabel('Piston Position')
+xlabel('Time - $\tau$','Interpreter','LaTeX')
+ylabel('Position - $\tilde{x}$','Interpreter','LaTeX')
 
 figure;
 plot(t,y(2,:))
-xlabel('Time'); ylabel('Piston Velocity')
+xlabel('Time - $\tau$','Interpreter','LaTeX')
+ylabel('Velocity - $\tilde{x}''$','Interpreter','LaTeX')
 
 figure;
 plot(t,y(3,:))
-xlabel('Time'); ylabel('Pressure')
+xlabel('Time - $\tau$','Interpreter','LaTeX')
+ylabel('Pressure - $\tilde{p}$','Interpreter','LaTeX')
 
 %%
 figure

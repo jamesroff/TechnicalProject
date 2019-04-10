@@ -5,7 +5,7 @@
 
 %% Initialise variables
 a = 0.01;
-b = 10;
+b = 1;
 r0 = [1,0,1];
 
 r = 0.9;
@@ -17,7 +17,9 @@ x_min = 0;
 
 %%
 x_range = [0,x_max];
+%x_range = [0.4,1];
 p_range = [0,10];
+%p_range = [0,5];
 v_range = [-0.3,0.3];
 
 n = 5;
@@ -38,7 +40,8 @@ for i = 1:size(init,1)
     [t,y] = InitialModel(a,b,r,init(i,:),[x_min,x_max],t_range);
     plot(y(1,:),y(3,:),'g-')
 end
-xlabel('Position'); ylabel('Pressure')
+xlabel('Position - $\tilde{x}$','Interpreter','LaTeX');
+ylabel('Pressure - $\tilde{p}$','Interpreter','LaTeX');
 ylim(p_range); xlim(x_range)
 
 %% 3D Init
@@ -60,7 +63,9 @@ for i = 1:size(init,1)
     plot3(y(1,1),y(2,1),y(3,1),'go')
     plot3(y(1,:),y(2,:),y(3,:),'g-')
 end
-xlabel('Position'); ylabel('Velocity'); zlabel('Pressure')
+xlabel('Position - $\tilde{x}$','Interpreter','LaTeX');
+ylabel('Velocity - $\tilde{x}''$','Interpreter','LaTeX');
+zlabel('Pressure - $\tilde{p}$','Interpreter','LaTeX');
 xlim(x_range); ylim(v_range); zlim(p_range)
 
 function [init] = CreateInitialConditions(x_vals,v_vals,p_vals)
