@@ -40,7 +40,8 @@ plot(0.0351,14.9501,'ro')
 plot(0.1,4,'rd')
 plot(0.1,2,'bx')
 plot(0.1686,1.4745,'b*')
-ylabel('Pipe length - \gamma'); xlabel('Tank pressure - p_0')
+ylabel('Pipe length - $\gamma$','Interpreter','latex');
+xlabel('Tank pressure - $p_0$','Interpreter','latex');
 %xlim([0,1]); ylim([0,20])
 xlim(pres_range); ylim(gamma_range)
 grid on
