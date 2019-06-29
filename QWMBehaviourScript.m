@@ -8,8 +8,8 @@ q = 0.6;
 L = 0.6; % 0.3, 0.35, 0.5
 p = CalculateParameters(q,L);
 %p = [L*201.3/890, q, (1.78e-3)/L, 3.186, 1, 0, 0.0141, 0.0538, 2.352, 0.00064]; % Dimensionless spring PRV 1E2 parameters
-%p(3) = 0; % Set Lambda to 0
-%p(10) = 0; % Set phi to 0
+p(3) = 0; % Set Lambda to 0
+p(10) = 0; % Set phi to 0
 
 % Initialise equilibrium pressure and 
 pres = ((p(2))/(p(8)*p(9)))^2;
