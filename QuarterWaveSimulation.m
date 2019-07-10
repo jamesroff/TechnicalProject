@@ -1,6 +1,8 @@
-function [t,y,t_col,t_end] = QuarterWaveSimulation(p,init,x_range,t_range,model,cont)
+function [t,y,t_col,t_end] = QuarterWaveSimulation(modes,p,init,x_range,t_range,model,cont)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
+
+%%% y = [x, x_dot, p, B_1, B_2, ..., B_modes, C_1, C_2, ..., C_modes]
 
 % p = [gamma, q, Lambda, alpha, delta, kappa, beta, mu, sigma, phi, r]
 r = p(end);
@@ -27,8 +29,8 @@ while t(end) ~= t_range(2)
             [t1,y1] = ode45(@(t,y) Derivative(t,y,p(1:end-1)), [t(end),t_range(2)], init, opts);
         case 'QWM'
             [t1,y1] = ode45(@(t,y) FullDerivative(t,y,p(1:end-1)), [t(end),t_range(2)], init, opts);
-        case 'FullQWM'
-            [t1,y1] = ode45(@(t,y) ComplexDerivative(t,y,p(1:end-1)), [t(end),t_range(2)], init, opts);
+%         case 'FullQWM'
+%             [t1,y1] = ode45(@(t,y) ComplexDerivative(t,y,p(1:end-1)), [t(end),t_range(2)], init, opts);
         otherwise
             t = []; y = [];
             return

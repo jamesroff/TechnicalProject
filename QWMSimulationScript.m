@@ -3,7 +3,8 @@ close all;
 %clear all;
 %clc;
 
-model = 'QWM';
+model = 'QWM'; % 'Initial' or 'QWM'
+modes = 1;
 valve = 'pilot';
 
 % Parameters to change
@@ -34,128 +35,43 @@ CalculateFrequency(p(1));
 
 %pres = ((p(2))/(p(8)*p(9)))^2;
 pres = ((sqrt(2)*pi/4)*(p(4)/p(1))*(pi/(2*p(1)))^2)/(p(5)^2 * 2 * (1-a)); %+ 0.07;
-%pres = 1;
-%pres = 10 * pres;
-%pres = pres / 10;
-init = [1,0,pres,-0.001,0]; % need 10000 to see some oscillations
-%init = [0.99,0,pres,0,0];
-%init = [0.99,0,1,0,0];
-%init = [1,0,1,0.01,0];
+
+init = zeros(1,3+2*modes);
+init(1) = 1;
+init(3) = pres;
+init(4) = -0.001;
 
 % Calculate QWM
-[t_control, y_control] = QuarterWaveSimulation(p,init,x_range,t_range,'Initial',true);
-[t,y] = QuarterWaveSimulation(p,init,x_range,t_range,model,cont);
+[t_control, y_control] = QuarterWaveSimulation(modes,p,init,x_range,t_range,'Initial',true);
+[t,y] = QuarterWaveSimulation(modes,p,init,x_range,t_range,model,cont);
 %[t2,y2] = QuarterWaveSimulation(p,init,x_range,t_range,model);
 if isempty(t) && isempty(y)
     fprintf("Error during Quarter Wave Simulation\n");
     return
 end
 
+% Create legend labels
+Labels = {'Valve position','Valve velocity','Tank Pressure'};
+for i = 1:modes
+    Labels{3+i} = ['Pressure - mode ' num2str(i,'%d')];
+    Labels{3+modes+i} = ['Velocity - mode ' num2str(i,'%d')];
+end
+
 % Plot graphs
-figure;
-plot(t_control,y_control(1,:),'r--')
-hold on
-plot(t,y(1,:),'b-')
-%plot(t2,y2(1,:))
-xlabel('Time'); ylabel('Valve position')
-legend('Initial','Quarter Wave Model','location','northeast')
-%pbaspect([3 1 1])
-%set(gcf,'Position',[216 93 560 420])
-%set(gcf,'Position',[216 93 670 260])
-
-figure;
-plot(t_control,y_control(2,:),'r--')
-hold on
-plot(t,y(2,:),'b-')
-%plot(t2,y2(2,:))
-xlabel('Time'); ylabel('Valve velocity')
-legend('Initial','Quarter Wave Model','location','northeast')
-
-figure;
-plot(t_control,y_control(3,:),'r--')
-hold on
-plot(t,y(3,:),'b-')
-%plot(t2,y2(3,:))
-xlabel('Time'); ylabel('Tank pressure')
-legend('Initial','Quarter Wave Model','location','northeast')
-
-figure;
-plot(t_control,y_control(4,:),'r--')
-hold on
-plot(t,y(4,:),'b-')
-%plot(t2,y2(4,:))
-xlabel('Time'); ylabel('Pressure fluctuation')
-legend('Initial','Quarter Wave Model','location','northwest')
-
-figure;
-plot(t_control,y_control(5,:),'r--')
-hold on
-plot(t,y(5,:),'b-')
-%plot(t2,y2(5,:))
-xlabel('Time'); ylabel('Velocity fluctuation')
-legend('Initial','Quarter Wave Model','location','northwest')
-
-% % %%
-% % figure;
-% % set(gcf,'Position',[216 93 560 680])
-% % 
-% % fig1 = subplot(4,1,1);
-% % plot(t_control,y_control(1,:),'r--')
-% % hold on
-% % plot(t,y(1,:),'b-')
-% % %plot(t2,y2(1,:))
-% % y1 = ylabel('Valve position');
-% % fig1.XTickLabel = [];
-% % 
-% % fig2 = subplot(4,1,2);
-% % plot(t_control,y_control(2,:),'r--')
-% % hold on
-% % plot(t,y(2,:),'b-')
-% % %plot(t2,y2(2,:))
-% % y2 = ylabel('Valve velocity');
-% % fig2.XTickLabel = [];
-% % 
-% % fig3 = subplot(4,1,3);
-% % plot(t_control,y_control(4,:),'r--')
-% % hold on
-% % plot(t,y(4,:),'b-')
-% % %plot(t2,y2(4,:))
-% % y3 = ylabel('Pressure fluctuation');
-% % fig3.XTickLabel = [];
-% % 
-% % subplot(4,1,4)
-% % plot(t_control,y_control(5,:),'r--')
-% % hold on
-% % plot(t,y(5,:),'b-')
-% % %plot(t2,y2(5,:))
-% % xlabel('Time'); y4 = ylabel('Velocity fluctuation');
-% % %legend('Initial','Quarter Wave Model','location','northwest')
-% % 
-% % % 
-% % yc1 = y1.Position; yc2 = y2.Position; yc3 = y3.Position; yc4 = y4.Position;
-% % xpos = min([yc1(1), yc2(1), yc3(1), yc4(1)]);
-% % yc1(1) = xpos; set(y1,'Pos',yc1)
-% % yc2(1) = xpos; set(y2,'Pos',yc2)
-% % yc3(1) = xpos; set(y3,'Pos',yc3)
-% % yc4(1) = xpos; set(y4,'Pos',yc4)
-
-% %% FFT
-% 
-% T = t(3):5e-3:t(end);
-% Y = interp1(t(3:end),y(:,3:end)',T); Y = Y';
-% % figure;
-% % plot(T,Y(1,:))
-% 
-% FY = fft(Y'); FY = FY';
-% 
-% % FY = fft(y'); FY = FY';
-% 
-% P2 = abs(FY/size(FY,2));
-% P1 = P2(:,1:floor(size(FY,2)/2)+1);
-% P1 = 2*P1;
-% 
-% Fs = 1/(5e-3); % sampling frequency
-% f = Fs*(0:floor(size(FY,2)/2))/size(FY,2);
-% 
-% figure;
-% semilogy(f,P1(1,:))
+for i = 1:size(y_control,1)
+    figure;
+    plot(t_control,y_control(i,:),'r--')
+    hold on
+    plot(t,y(i,:),'b-')
+    %plot(t2,y2(i,:))
+    xlabel('Time'); ylabel(Labels(i))
+    
+    if i < 4
+        legend('Initial','Quarter Wave Model','location','northeast')
+    else
+        legend('Initial','Quarter Wave Model','location','northwest')
+    end
+    %pbaspect([3 1 1])
+    %set(gcf,'Position',[216 93 560 420])
+    %set(gcf,'Position',[216 93 670 260])
+end
