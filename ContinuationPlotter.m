@@ -45,3 +45,9 @@ xlabel('Tank pressure - $p_0$','Interpreter','latex');
 %xlim([0,1]); ylim([0,20])
 xlim(pres_range); ylim(gamma_range)
 grid on
+
+%%
+test_pres = 0.1; test_gamma = 14;
+plot(test_pres,test_gamma,'ko')
+
+eigenvalues = CalculateEigenvalues(test_pres,test_gamma,alpha,delta,sigma);
