@@ -1,11 +1,12 @@
 Code prepared in support of MEng Technical Project in "Chatter Instabilities in Pilot-Operated Pressure Relief Valves"
 Created by James Roff
-Created Jul 10 2018
+Created Feb 23 2018
 
-Last Updated Jul 10 2019
+Last Updated Mar 11 2019
+Identified issue with QWM equations, with one term contributing to an overdamped system.
 
-Branches - GeneralisedQuarterWaveModel
-Code implementing simulation and phase portraits for Quarter Wave model with arbitrary number of modes.
+Branches - QuarterWaveModel
+Code implementing simulation and phase portraits for Quarter Wave model.
 
 Files:
 CubicFactorisation.m - simple code to symbolically solve algebraic inequality
